@@ -1,4 +1,4 @@
-# StudnetEnquirySystem
+# EnquirySystem
 Spring boot with Data JPA, Sending email, Thymeleaf etc
 
 **Application Screens**
