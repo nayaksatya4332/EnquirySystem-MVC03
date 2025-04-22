@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>Add Enquiry</title>
+<!-- MDB icon -->
+<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+<!-- Google Fonts Roboto -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+<!-- MDB -->
+<link rel="stylesheet" href="css/mdb.min.css" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img alt="ashokit"
+				src="images/logo.jpg" width=100%>
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page"
+						href="dashboard">Dashboard</a></li>
+					<li class="nav-item"><a class="nav-link nav-link active"
+						href="#">Add Enquiry</a></li>
+					<li class="nav-item"><a class="nav-link" href="enquiries">View
+							Enquiries</a></li>
+				</ul>
+				<a href="/logout" class="btn btn-danger">Logout</a>
+			</div>
+		</div>
+	</nav>
+	<!-- Start your project here-->
+
+
+	<section class="h-100 gradient-form" style="background-color: #eee;">
+		<div class="container py-5 h-100">
+			<div
+				class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-xl-10">
+					<div class="card rounded-3 text-black">
+						<div class="row g-0">
+							<div class="col-lg-6">
+								<div class="card-body p-md-5 mx-md-4">
+
+									<div class="text-center">
+										<h4 class="mt-1 mb-5 pb-1">Add Student Enquriy Here</h4>
+									</div>
+									<div th:unless="${#strings.isEmpty(succMsg)}"
+										class="alert alert-success" role="alert">
+										<span th:text="${succMsg}"></span>
+									</div>
+									<div th:unless="${#strings.isEmpty(errMsg)}"
+										class="alert alert-danger" role="alert">
+										<span th:text="${errMsg}"></span>
+									</div>
+									<form th:action="@{/enquiry}" method="POST"
+										th:object="${enqForm}">
+										<div class="form-outline mb-4">
+											<input th:field="*{studentName}" type="text"
+												id="form2Example11" class="form-control"
+												placeholder="Student Name" /> <label class="form-label"
+												for="form2Example11">Student Name</label>
+										</div>
+
+										<div class="form-outline mb-4">
+											<input th:field="*{phNo}" type="text" id="form2Example11"
+												class="form-control" placeholder="Contact Number" /> <label
+												class="form-label" for="form2Example11">Contact
+												Number</label>
+										</div>
+
+										<div class="form-outline mb-4">
+											<label class="form-label" for="form2Example22">Class
+												Mode</label> <select th:field="*{classMode}" id="form2Example22"
+												class="form-select">
+												<option value="">-Select-</option>
+												<option value="Online">Online</option>
+												<option value="Classroom">Classroom</option>
+											</select>
+										</div>
+
+										<div class="form-outline mb-4">
+											<label class="form-label" for="form2Example22">Course</label>
+											<select th:field="*{courseName}" id="form2Example22"
+												class="form-select">
+												<option value="">-Select-</option>
+												<option th:each="course : ${courseList}"
+													th:value="${course}" th:text="${course}"></option>
+											</select>
+										</div>
+										<div class="form-outline mb-4">
+											<label class="form-label" for="form2Example22">Enquiry
+												Status</label> <select th:field="*{enquiryStatus}"
+												id="form2Example22" class="form-select">
+												<option value="">-Select-</option>
+												<option th:each="status: ${statusList}" th:value="${status}"
+													th:text="${status}"></option>
+											</select>
+										</div>
+
+										<div class="text-center pt-1 mb-5 pb-1">
+											<input type="submit" value="Submit"
+												class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" />
+										</div>
+									</form>
+
+								</div>
+							</div>
+							<div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+								<img alt="" src="images/lady.jpg" width="70%">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End your project here-->
+
+	<!-- MDB -->
+	<script type="text/javascript" src="js/mdb.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Custom scripts -->
+	<script type="text/javascript"></script>
+</body>
+
+</html>
